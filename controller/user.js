@@ -1,5 +1,6 @@
 const { Blog } = require('../model/blog')
 const { User } = require('../model/user')
+const { validateToken } = require('../services/authentication')
 
 async function handleGetHomepage(req, res){
     res.render('home',{})
@@ -12,18 +13,28 @@ async function handleSignUp(req, res){
 }
 
 async function handleSignin(req, res){
-    const {email, password} = req.body
-    
-    const user = await User.find({email, password})
-    
-    if(!user){
-        res.render('signin',{
-            error : "Invalid username or password"
+    const { email, password } = req.body
+    try{
+
+        // generated token using email, password
+        const token = await User.matchPasswordAndGenerateToken( email, password )
+        
+        // got user payload from it containing all imp info
+        const user = validateToken(token)
+
+        // got the id from payload
+        const blogs = await Blog.find({createrBy : user.id})
+        
+        //set the token as cookie named 'token'
+        return res.cookie('token',token).render('/',{
+            blogs
         })
     }
+    catch(err){
 
-    const blogs = await Blog.find({createrBy : user._id})
-    return res.redirect('/',{
-        blogs
-    })
+        // catch wrong info
+        res.render('signin',{
+            error : "wrong email or password"
+        })
+    }                
 }
