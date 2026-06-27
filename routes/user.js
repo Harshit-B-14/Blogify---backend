@@ -25,4 +25,9 @@ router.route('/signin')
         return res.redirect('/')
     })
 
+router.route('/logout') 
+    .get((req, res) => {
+        req.clearCookie('token').redirect('/')
+    })
+
 module.exports = router;

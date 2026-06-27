@@ -3,10 +3,10 @@ const secret = 'hpvrtx#7'
 
 function generateToken(user){
     const payload = {
-        id = user._id,
-        email = user.email,
-        password = user.password,
-        role = user.role
+        id : user._id,
+        email : user.email,
+        name : user.name,
+        role : user.role
     }
 
     const token = jwt.sign(payload, secret)

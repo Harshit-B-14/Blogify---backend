@@ -2,6 +2,7 @@
 const express = require("express")
 const path = require("path")
 const connectMongo = require("./connection")
+const { checkForAuthenticationCookie } = require("./middleware/authentication")
 const cookieParser = require(cookie-parser)
 
 
@@ -17,5 +18,6 @@ app.set('view', path.resolve('./views'))
 app.use(express.json())
 app.use(express.urlencoded({extended : false}))
 app.use(cookieParser())
+app.use(checkForAuthenticationCookie('token'))
 
 app.listen(PORT, () => console.log(`server ga kita, PORT: ${PORT}`))
