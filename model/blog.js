@@ -11,12 +11,13 @@ const blogSchema = new mongoose.Schema({
     },
     coverImage : {
         type : String,
+        required : false
     },
     createdBy : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'User'
+        type : mongoose.Schema.Types.ObjectId,  
+        ref : 'User' // ref makes the 
     }
-})
+}, {timestamps : true})
 
 const Blog = new mongoose.model('blog', blogSchema)
 

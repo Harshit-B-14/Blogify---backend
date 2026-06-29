@@ -1,18 +1,19 @@
 const express = require('express')
 const { User } = require('../model/user')
+const { handleGetHomepage, handleSignUp, handleSignIn } = require('../controller/user')
 
 const router = express.Router()
 
-router.get('/', handle)
+router.get('/', handleGetHomepage)
 
-router.get('/:id', handle)
+// router.get('/:id', handle)
 
-router.route('/createAccount')
-    .get(handle)
-    .post(handle)
+// router.route('/createAccount')
+//     .get(handle)
+//     .post(handle)
 
 router.route('/signin')
-    .get(handle)
+    // .get(handle)
     .post( async (req, res) => {
         const { email, password } = req.body
         try{

@@ -3,7 +3,9 @@ const { User } = require('../model/user')
 const { validateToken } = require('../services/authentication')
 
 async function handleGetHomepage(req, res){
-    res.render('home',{})
+    res.render('home',{
+        user : null
+    })
 }
 
 async function handleSignUp(req, res){
@@ -12,7 +14,7 @@ async function handleSignUp(req, res){
     res.render('home')
 }
 
-async function handleSignin(req, res){
+async function handleSignIn(req, res){
     const { email, password } = req.body
     try{
 
@@ -26,8 +28,8 @@ async function handleSignin(req, res){
         const blogs = await Blog.find({createrBy : user.id})
         
         //set the token as cookie named 'token'
-        return res.cookie('token',token).render('/',{
-            blogs
+        return res.cookie('token',token).render('home',{
+            blogs : blogs
         })
     }
     catch(err){
@@ -38,3 +40,5 @@ async function handleSignin(req, res){
         })
     }                
 }
+
+module.exports = { handleGetHomepage, handleSignUp, handleSignIn }
