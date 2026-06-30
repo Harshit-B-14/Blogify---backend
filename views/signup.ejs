@@ -3,16 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Sign Up</title>
 </head>
 <body>
-    <div class="mb-3">
-  <label for="formGroupExampleInput" class="form-label">First Name</label>
-  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
-</div>
-<div class="mb-3">
-  <label for="formGroupExampleInput2" class="form-label"></label>
-  <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
-</div>
+    <div class="m-4">
+        <h1 class="display-6">Sign Up</h1>
+        <form action="/signup" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">Full Name</label>
+                <input type="email" class="form-control w-25" style="border-width: 3px;" id="email" placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control w-25" style="border-width: 3px;" id="email" placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+                <label for="Password" class="form-label">Password</label>
+                <input class="form-control w-25" id="password" style="border-width: 3px;" placeholder="Password"></input>
+            </div>
+            <button type="submit" class="btn btn-outline-dark">Sign Up</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

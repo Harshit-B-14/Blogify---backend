@@ -1,6 +1,6 @@
 const express = require('express')
 const { User } = require('../model/user')
-const { handleGetHomepage, handleSignUp, handleSignIn } = require('../controller/user')
+const { handleGetHomepage, handleGetSignin, handleGetSignup, handleSignUp, handleSignIn } = require('../controller/user')
 
 const router = express.Router()
 
@@ -8,12 +8,12 @@ router.get('/', handleGetHomepage)
 
 // router.get('/:id', handle)
 
-// router.route('/createAccount')
-//     .get(handle)
-//     .post(handle)
+router.route('/signup')
+    .get(handleGetSignup)
+    .post(handleSignUp)
 
 router.route('/signin')
-    // .get(handle)
+    .get(handleGetSignin)
     .post( async (req, res) => {
         const { email, password } = req.body
         try{

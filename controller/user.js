@@ -8,9 +8,20 @@ async function handleGetHomepage(req, res){
     })
 }
 
+async function handleGetSignin(req, res){
+    res.render('signin', {
+        error : null
+    })
+}
+
+async function handleGetSignup(req, res){
+    res.render('signup')
+}
+
 async function handleSignUp(req, res){
     const {name, password, email} = req.body
-    await User.create({name, password, email})
+    const role = 'user'
+    await User.create({name, email, role, password})
     res.render('home')
 }
 
@@ -41,4 +52,4 @@ async function handleSignIn(req, res){
     }                
 }
 
-module.exports = { handleGetHomepage, handleSignUp, handleSignIn }
+module.exports = { handleGetHomepage, handleGetSignin, handleGetSignup, handleSignUp, handleSignIn }
