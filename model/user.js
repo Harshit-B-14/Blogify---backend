@@ -17,8 +17,7 @@ const userSchema = new mongoose.Schema({
         required : true,
     },
     salt : {
-        type : String,
-        required : true
+        type : String
     },
     password : {
         type : String,
@@ -26,7 +25,7 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-userSchema.pre('save', function (next){
+userSchema.pre('save', function (){
     const user = this
     if(!user.isModified('password')) return
 
@@ -37,7 +36,6 @@ userSchema.pre('save', function (next){
     
     this.salt = salt
     this.password = hashedPassword
-    next()
 })
 
 userSchema.statics.matchPasswordAndGenerateToken = async function(email, password){

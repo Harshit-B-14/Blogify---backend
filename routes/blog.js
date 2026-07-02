@@ -15,4 +15,9 @@ router.route('/blog')
         const { title, image, body } = res
     })
 
+router.route('/addBlog')
+    .get((req, res) => {
+        res.render('blog')
+    })
+
 module.exports = router

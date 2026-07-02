@@ -21,6 +21,9 @@
            <li>
             <p><%= user.email %></p>
            </li>
+           <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/addBlog">Add Blog</a>
+          </li>
           <% } else { %>
             <li class="nav-item">
               <a class="nav-link" href="/signup">Sign Up</a>
@@ -29,6 +32,12 @@
               <a class="nav-link" href="/signin">Sign In</a>
             </li>
           <% } %>
+          <li class="nav-item">
+            <a class="nav-link" href="/deleteAccounts">Reset</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/data">All users</a>
+          </li>
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>

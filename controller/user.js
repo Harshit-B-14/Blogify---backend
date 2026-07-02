@@ -32,14 +32,16 @@ async function handleSignIn(req, res){
         // generated token using email, password
         const token = await User.matchPasswordAndGenerateToken( email, password )
         
-        // got user payload from it containing all imp info
+        // got user payload from token containing all imp info
         const user = validateToken(token)
+        console.log(user)
 
         // got the id from payload
         const blogs = await Blog.find({createrBy : user.id})
         
         //set the token as cookie named 'token'
         return res.cookie('token',token).render('home',{
+            user : user,
             blogs : blogs
         })
     }

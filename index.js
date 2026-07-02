@@ -10,6 +10,7 @@ const BlogRouter = require('./routes/blog')
 //setting constants
 const app = express()
 const PORT = 8002
+const URL = 'mongodb://127.0.0.1:27017/blogify'
 
 //setting view engine
 app.set('view engine', "ejs")
@@ -22,5 +23,10 @@ app.use(cookieParser())
 app.use(checkForAuthenticationCookie('token'))
 
 app.use('/', UserRouter)
+app.use('/blog', BlogRouter)
+
+connectMongo(URL)
+    .then(() => console.log('mongoDB connected'))
+    .catch((err) => console.log(err))
 
 app.listen(PORT, () => console.log(`server ga kita, PORT: ${PORT}`))
