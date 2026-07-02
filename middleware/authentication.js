@@ -8,8 +8,10 @@ function checkForAuthenticationCookie(cookieName) {
         const token = req.cookies[cookieName]
         if(!token) return next()
 
+        let user
+        
         try{
-            const user = validateToken(token)
+            user = validateToken(token)
         }
         catch(err){
             console.log(err)

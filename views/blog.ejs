@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/bootstrapCSS') %>
     <title>Document</title>
 </head>
 <body>
+    <%- include('./partials/nav') %>
     <div class="mb-3">
         <label for="blogTitle" class="form-label">Title</label>
         <input type="text" class="form-control" id="blogTitle" placeholder="Title">
@@ -18,5 +20,6 @@
         <label for="blogBody" class="form-label">Body</label>
         <textarea class="form-control" id="blogBody" rows="3"></textarea>
     </div>
+  <%- include('./partials/bootstrapScript') %>
 </body>
 </html>

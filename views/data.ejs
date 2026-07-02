@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/bootstrapCSS') %>
     <title>Document</title>
 </head>
 <body>
+    <%- include('./partials/nav') %>
     <h1> All accounts :  </h1>
     <ul>
         <% for( let index = 0; index < users.length; index++ ) { %>
         <li><%= users[index].name %></li>
         <% } %>
     </ul>
+  <%- include('./partials/bootstrapScript') %>
 </body>
 </html>

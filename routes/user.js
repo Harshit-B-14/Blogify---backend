@@ -15,17 +15,7 @@ router.route('/signup')
 
 router.route('/signin')
     .get(handleGetSignin)
-    .post( async (req, res) => {
-        const { email, password } = req.body
-        try{
-            const user = await User.matchPassword( email, password )
-            console.log('User : ', user)
-        }
-        catch(err){
-            res.json({message : "incorrect email or password"})
-        }            
-        return res.redirect('/')
-    })
+    .post(handleSignIn)
 
 router.route('/logout') 
     .get((req, res) => {
@@ -36,6 +26,7 @@ router.route('/deleteAccounts')
     .get(async (req, res) => {
         await User.deleteMany({})
         await Blog.deleteMany({})
+        res.clearCookie('token')
         res.render('reset')
     })
 
