@@ -19,7 +19,7 @@ router.route('/signin')
 
 router.route('/logout') 
     .get((req, res) => {
-        req.clearCookie('token').redirect('/')
+        res.clearCookie('token').redirect('/')
     })
 
 router.route('/deleteAccounts')
@@ -32,6 +32,7 @@ router.route('/deleteAccounts')
 
 router.route('/data')
     .get(async (req, res) => {
+        
         const users = await User.find({})
         res.render('data',{
             users

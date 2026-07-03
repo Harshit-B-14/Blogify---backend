@@ -17,9 +17,9 @@ app.set('view engine', "ejs")
 app.set('views', path.resolve('./views'))
 
 //middlewares
-app.use(express.json())
-app.use(express.urlencoded({extended : false}))
-app.use(cookieParser())
+// app.use(express.json()) - puts json data  sent by client in req.body
+app.use(express.urlencoded({extended : false})) // puts form data in req.body
+app.use(cookieParser()) // put cookies in req.bidt
 app.use(checkForAuthenticationCookie('token'))
 app.use((req, res, next) =>{
     res.locals.user = req.user
