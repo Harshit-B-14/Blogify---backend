@@ -21,8 +21,10 @@ app.set('views', path.resolve('./views'))
 app.use(express.urlencoded({extended : false})) // puts form data in req.body
 app.use(cookieParser()) // put cookies in req.bidt
 app.use(checkForAuthenticationCookie('token'))
+app.use('/uploads', express.static('uploads'))
 app.use((req, res, next) =>{
     res.locals.user = req.user
+    res.locals.blogs = req.blogs
     next()
 })
 

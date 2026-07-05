@@ -1,6 +1,8 @@
 const { Blog } = require('../model/blog')
 const { User } = require('../model/user')
 const { validateToken, generateToken } = require('../services/authentication')
+const path = require('path')
+const fs = require('fs')
 
 async function handleGetHomepage(req, res){
     
@@ -33,6 +35,11 @@ async function handleSignUp(req, res){
 
     //generate token and set cookie
     const token = generateToken(user)
+    
+    // making a folder using this new user's id
+    await fs.mkdirSync(path.join(__dirname, '..', 'uploads', user._id.toString()), {
+        recursive : true
+    })
 
     res.cookie('token',token).redirect('/')
 }
