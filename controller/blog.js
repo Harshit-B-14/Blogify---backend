@@ -2,6 +2,16 @@ const { User } = require('../model/user')
 const { Blog } = require('../model/blog')
 const multer = require('multer')
 
+async function handleGetBlogById(req, res){
+    const id = req.params.id
+    const blog = await Blog.findById(id).populate('createdBy')
+
+    res.render('blog',{
+        blog
+    })
+    // res.render('/blog',)
+}
+
 async function handleAddBlog(req, res){
     try{
         const { title, body } = req.body
@@ -16,11 +26,13 @@ async function handleAddBlog(req, res){
         console.log(err)
         return res.status(500).send('something went wrong')
     }
-    const blogs = await Blog.find({createdBy : req.user.id})
+
+    // descending order
+    const blogs = await Blog.find({}).sort({createdAt : -1})
 
     res.render('home', {
         blogs
     })
 }
 
-module.exports = { handleAddBlog }
+module.exports = { handleAddBlog, handleGetBlogById }

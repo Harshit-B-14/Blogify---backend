@@ -8,22 +8,22 @@
 </head>
 <body>
     <%- include('./partials/nav') %>
-    <div class="m-4">    
-        <form action="/blog/addBlog" method="post" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="blogTitle" class="form-label">Title</label>
-                <input type="text" class="form-control" name='title' id="blogTitle" placeholder="Title">
-            </div>
-            <div class="mb-3">
-                <label for="coverImage" class="form-label">Cover Image</label>
-                <input class="form-control" type="file" name="coverImage" id="coverImage">
-            </div>
-            <div class="mb-3">
-                <label for="blogBody" class="form-label">Body</label>
-                <textarea class="form-control" id="blogBody" name='body' rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-dark">Post</button>
-        </form>
+    <div class="m-4">
+        <figure>
+        <blockquote class="blockquote">
+            <p><%- blog.title %></p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            by <cite title="Source Title"><%- blog.createdBy.name %></cite>
+        </figcaption>
+        </figure>
+        <div class="mb-3">
+            <img src="<%- blog.coverImage %>" class="img-fluid" alt="Cover Image">
+        </div>
+        <div class="mb-3">
+            <pre><%- blog.body %></pre>
+        </div>
+        
     </div>
     <%- include('./partials/bootstrapScript') %>
 </body>

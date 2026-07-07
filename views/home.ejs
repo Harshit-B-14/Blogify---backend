@@ -10,14 +10,14 @@
   <%- include('./partials/nav') %>
   <% if (blogs && blogs.length) { %>
     <h2 class="ms-4 modal-title" >Blogs</h2>
-    <div class="d-flex">
+    <div class="d-flex align-items-start justify-content-around flex-wrap">
       <% for( let index = 0; index < blogs.length; index++ ) { %>
-        <div class="card m-4" style="width: 18rem;">
+        <div class="card m-4" style="max-width: 20rem;">
           <img src=<%- blogs[index].coverImage %> class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title"><%- blogs[index].title %></h5>
             <p class="card-text"><%- blogs[index].body %></p>
-            <a href="" class="btn btn-primary">Go somewhere</a>
+            <a href='/blog/<%- blogs[index]._id %>' class="btn btn-primary"> Read </a>
           </div>
         </div>
       <% } %>
