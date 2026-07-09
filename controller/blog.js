@@ -1,13 +1,16 @@
 const { User } = require('../model/user')
 const { Blog } = require('../model/blog')
+const { Comment } = require('../model/comment')
 const multer = require('multer')
 
 async function handleGetBlogById(req, res){
     const id = req.params.id
     const blog = await Blog.findById(id).populate('createdBy')
-
+    const comments = await Comment.find({ blog : id }).populate('user')
+    
     res.render('blog',{
-        blog
+        blog,
+        comments
     })
     // res.render('/blog',)
 }
@@ -35,4 +38,19 @@ async function handleAddBlog(req, res){
     })
 }
 
-module.exports = { handleAddBlog, handleGetBlogById }
+async function handleComment(req, res){
+    const content = req.body.comment
+    const user = req.user.id
+    const blog = req.params.id
+ 
+    await Comment.create({
+        content,
+        user,
+        blog
+    })
+    
+    res.redirect(`/blog/${blog}`)
+    
+}
+
+module.exports = { handleAddBlog, handleGetBlogById, handleComment }

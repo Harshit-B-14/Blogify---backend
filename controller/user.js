@@ -5,12 +5,7 @@ const path = require('path')
 const fs = require('fs')
 
 async function handleGetHomepage(req, res){
-    
-    const user = req.user
 
-    if(!user) return res.render('home')
-
-    // got the id 
     const blogs = await Blog.find({}).sort({createdAt : -1})
     
     res.render('home',{

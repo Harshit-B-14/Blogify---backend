@@ -23,8 +23,21 @@
         <div class="mb-3">
             <pre><%- blog.body %></pre>
         </div>
+        <h2>Comments</h2>
         
+        <% if (user) { %>
+            <form action="/blog/comment/<%- blog.id %>" method="post">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="<%- user.name %>" aria-label="<%- user.name %>" aria-describedby="button-addon2" name="comment">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Comment</button>
+                </div>
+            </form>
+        <% } %>
+        <% comments.forEach(comment => { %>
+            <h3><%- comment.user.name %></h3>
+            <pre><%- comment.content %></pre>
+        <% }) %>
     </div>
-    <%- include('./partials/bootstrapScript') %>
+    <%- include('./partials/bootstrapScript/') %>
 </body>
 </html>

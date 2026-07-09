@@ -1,6 +1,6 @@
 const express = require('express')
 const { Blog } = require('../model/blog')
-const { handleAddBlog, handleGetBlogById } = require('../controller/blog')
+const { handleAddBlog, handleGetBlogById, handleComment } = require('../controller/blog')
 const { upload } = require('../middleware/fileUpload')
 
 const router = express.Router()
@@ -25,5 +25,8 @@ router.route('/addBlog')
 
 router.route('/:id')
     .get(handleGetBlogById)
+
+router.route('/comment/:id')
+    .post(handleComment)
 
 module.exports = router
